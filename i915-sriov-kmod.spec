@@ -41,17 +41,14 @@ for kernel_version  in %{?kernel_versions} ; do
 done
 
 %install
+%define kmodinstdir_postfix /kernel/drivers/gpu/drm/i915/
+
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
-    mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/
-    rm -rf /lib/modules/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/i915.ko
     install -p -m 0755 _kmod_build_${kernel_version%%___*}/*.ko \
-        %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/
+        %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
 done
 %{?akmod_install}
-
-%files
-%{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/i915.ko
 
 %changelog
 {{{ git_dir_changelog }}}
