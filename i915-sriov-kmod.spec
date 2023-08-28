@@ -3,6 +3,8 @@
 %global debug_package %{nil}
 %endif
 
+%define kmodinstdir_postfix /kernel/drivers/gpu/drm/i915/
+
 Name:     i915-sriov-kmod
 Version:  {{{ git_dir_version }}}
 Release:  1%{?dist}
@@ -11,7 +13,6 @@ License:  GPLv2
 URL:      https://github.com/strongtz/i915-sriov-dkms
 
 Source:   %{url}/archive/refs/heads/master.tar.gz
-
 
 BuildRequires: kmodtool
 
@@ -41,9 +42,9 @@ for kernel_version  in %{?kernel_versions} ; do
 done
 
 %install
-%define kmodinstdir_postfix /kernel/drivers/gpu/drm/i915/
 
 for kernel_version in %{?kernel_versions}; do
+    mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/extra/
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
     install -p -m 0755 _kmod_build_${kernel_version%%___*}/*.ko \
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
