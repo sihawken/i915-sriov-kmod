@@ -12,6 +12,7 @@ URL:      https://github.com/strongtz/i915-sriov-dkms
 
 Source:   %{url}/archive/refs/heads/master.tar.gz
 
+
 BuildRequires: kmodtool
 
 %{expand:%(kmodtool --target %{_target_cpu} --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
@@ -41,6 +42,7 @@ done
 
 %install
 for kernel_version in %{?kernel_versions}; do
+    mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/
     install -p -m 0755 _kmod_build_${kernel_version%%___*}/*.ko \
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/
