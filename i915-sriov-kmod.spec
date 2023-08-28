@@ -44,6 +44,7 @@ done
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/
+    rm -rf /lib/modules/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/i915.ko
     install -p -m 0755 _kmod_build_${kernel_version%%___*}/*.ko \
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/
 done
