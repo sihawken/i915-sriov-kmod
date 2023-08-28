@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 %endif
 
-Name:     steamdeck
+Name:     i915-sriov
 Version:  {{{ git_dir_version }}}
 Release:  1%{?dist}
 Summary:  Linux i915 module patched with SR-IOV support.
