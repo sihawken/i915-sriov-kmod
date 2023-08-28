@@ -51,7 +51,7 @@ done
 %{?akmod_install}
 
 %files
-/lib/modules/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/i915.ko
+%{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/kernel/drivers/gpu/drm/i915/i915.ko
 
 %changelog
 {{{ git_dir_changelog }}}
