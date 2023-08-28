@@ -3,7 +3,7 @@
 %global debug_package %{nil}
 %endif
 
-Name:     i915-sriov
+Name:     i915-sriov-kmod
 Version:  {{{ git_dir_version }}}
 Release:  1%{?dist}
 Summary:  Linux i915 module patched with SR-IOV support.
@@ -12,8 +12,7 @@ URL:      https://github.com/strongtz/i915-sriov-dkms
 
 Source:   %{url}/archive/refs/heads/master.tar.gz
 
-Provides: %{name}-kmod-common = %{version}
-Requires: %{name}-kmod >= %{version}
+Provides: %{name}-common = %{version}
 
 BuildRequires: kmodtool
 
