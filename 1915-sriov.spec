@@ -17,13 +17,7 @@ Requires: %{name}-kmod >= %{version}
 BuildRequires: systemd-rpm-macros
 
 %description
-Driver exposing various bits and pieces of functionality provided by Steam Deck specific VLV0100 device presented by EC firmware.
-This includes but not limited to:
-- CPU/device's fan control
-- Read-only access to DDIC registers
-- Battery tempreature measurements
-- Various display related control knobs
-- USB Type-C connector event notification
+Linux i915 module patched with SR-IOV support.
 
 %prep
 %setup -q -c %{name}-kmod-main
