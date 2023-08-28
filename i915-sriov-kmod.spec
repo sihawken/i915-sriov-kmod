@@ -4,7 +4,7 @@
 %endif
 
 Name:     i915-sriov-kmod
-Version:  0.0.git.30.1fac57e3
+Version:  {{{ git_dir_version }}}
 Release:  1%{?dist}
 Summary:  Linux i915 module patched with SR-IOV support.
 License:  GPLv2
