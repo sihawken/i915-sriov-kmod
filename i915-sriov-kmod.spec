@@ -65,7 +65,7 @@ done
 %{__install} kmod-i915-sriov.conf %{buildroot}%{_sysconfdir}/depmod.d/
 
 %files
-%{buildroot}%{_sysconfdir}/depmod.d/kmod-i915-sriov.conf
+kmod-i915-sriov.conf
 
 %{?akmod_install}
 
