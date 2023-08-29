@@ -1,0 +1,7 @@
+--- _kmod_build_i915-sriov/Makefile 
++++ _kmod_build_i915-sriov/Makefile
+@@ -409,4 +409,3 @@
+ obj-m := i915.o
+ 
+ .PHONY: default clean modules load unload install patch
+-

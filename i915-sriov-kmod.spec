@@ -22,6 +22,8 @@ URL:      https://github.com/strongtz/i915-sriov-dkms
 
 Source:   %{url}/archive/refs/heads/master.tar.gz
 
+Patch0:   i915-sriov.patch
+
 BuildRequires: kmodtool
 
 %{expand:%(kmodtool --target %{_target_cpu} --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
@@ -41,18 +43,19 @@ kmodtool --target %{_target_cpu} --kmodname %{name} %{?buildforkernels:--%{build
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \+
 
 for kernel_version  in %{?kernel_versions} ; do
-  cp -a i915-sriov-dkms-master _kmod_build_${kernel_version%%___*}
+  cp -a i915-sriov-dkms-master _kmod_build_i915-sriov
 done
+%patch 0
 
 %build
 for kernel_version  in %{?kernel_versions} ; do
-  make V=1 %{?_smp_mflags} -C ${kernel_version##*___} M=${PWD}/_kmod_build_${kernel_version%%___*} VERSION=v%{version} modules
+  make V=1 %{?_smp_mflags} -C ${kernel_version##*___} M=${PWD}/_kmod_build_i915-sriov VERSION=v%{version} modules
 done
 
 %install
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
-    install -p -m 0755 _kmod_build_${kernel_version%%___*}/*.ko \
+    install -p -m 0755 _kmod_build_i915-sriov/*.ko \
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
 done
 %{?akmod_install}
