@@ -6,8 +6,3 @@
  KBASE       := /lib/modules/$(KVER)
  KSRC        := $(KBASE)/source
  KBUILD      := $(KBASE)/build
-@@ -409,4 +409,3 @@
- obj-m := i915.o
- 
- .PHONY: default clean modules load unload install patch
--
