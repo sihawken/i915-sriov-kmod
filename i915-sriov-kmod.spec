@@ -23,6 +23,7 @@ URL:      https://github.com/strongtz/i915-sriov-dkms
 Source:   %{url}/archive/refs/heads/master.tar.gz
 
 BuildRequires: kmodtool
+ExclusiveArch: x86_64
 
 %{expand:%(kmodtool --target %{_target_cpu} --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
