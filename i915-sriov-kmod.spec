@@ -48,7 +48,7 @@ done
 
 %build
 for kernel_version  in %{?kernel_versions} ; do
-  make -j$(nproc) -C ${kernel_version##*___} M=${PWD}/_kmod_build_${kernel_version%%___*} VERSION=v%{version} KVER=${kernel_version%%___*}
+  make -j$(nproc) -C ${kernel_version##*___} M=${PWD}/_kmod_build_${kernel_version%%___*} KVER=${kernel_version%%___*}
 done
 
 %install
