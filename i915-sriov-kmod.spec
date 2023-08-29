@@ -3,6 +3,8 @@
 
 %global zipmodules 1
 
+%define _unpackaged_files_terminate_build 0
+
 %define __spec_install_post \
   %{__arch_install_post}\
   %{__os_install_post}\
