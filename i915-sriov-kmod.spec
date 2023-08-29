@@ -65,7 +65,8 @@ done
 
 %{?akmod_install}
 
-depmod -a
+%post
+/sbin/depmod -a
 
 %files
 /%{_sysconfdir}/depmod.d/kmod-i915-sriov.conf
