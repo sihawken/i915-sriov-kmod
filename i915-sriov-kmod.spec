@@ -66,7 +66,7 @@ done
 %{?akmod_install}
 
 %files
-/kmod-i915-sriov.conf
+/%{buildroot}%{_sysconfdir}/depmod.d/kmod-i915-sriov.conf
 
 %changelog
 {{{ git_dir_changelog }}}
