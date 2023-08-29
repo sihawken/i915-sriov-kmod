@@ -3,7 +3,7 @@
 
 %global zipmodules 1
 
-%define _unpackaged_files_terminate_build 0
+
 
 %define __spec_install_post \
   %{__arch_install_post}\
@@ -63,6 +63,9 @@ for kernel_version in %{?kernel_versions}; do
 done
 %{__install} -d %{buildroot}%{_sysconfdir}/depmod.d/
 %{__install} kmod-i915-sriov.conf %{buildroot}%{_sysconfdir}/depmod.d/
+
+%files
+%{buildroot}%{_sysconfdir}/depmod.d/kmod-i915-sriov.conf
 
 %{?akmod_install}
 
