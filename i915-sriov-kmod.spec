@@ -1,9 +1,8 @@
 %global buildforkernels akmod
 %global debug_package %{nil}
 
+# Enable zipping the modules with xz
 %global zipmodules 1
-
-
 
 %define __spec_install_post \
   %{__arch_install_post}\
@@ -59,8 +58,8 @@ for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
     install -p -m 0755 _kmod_build_${kernel_version%%___*}/*.ko \
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
-    chmod a+x %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/*
 done
+
 %{__install} -d %{buildroot}%{_sysconfdir}/depmod.d/
 %{__install} kmod-i915-sriov.conf %{buildroot}%{_sysconfdir}/depmod.d/
 
