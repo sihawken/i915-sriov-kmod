@@ -59,6 +59,7 @@ for kernel_version in %{?kernel_versions}; do
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
     chmod a+x %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/*
 done
+%{__install} -d %{buildroot}%{_sysconfdir}/depmod.d/
 %{__install} kmod-i915-sriov.conf %{buildroot}%{_sysconfdir}/depmod.d/
 
 %{?akmod_install}
