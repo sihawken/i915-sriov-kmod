@@ -1,7 +1,17 @@
-%if 0%{?fedora}
 %global buildforkernels akmod
 %global debug_package %{nil}
-%endif
+
+%global zipmodules 1
+
+%define __spec_install_post \
+  %{__arch_install_post}\
+  %{__os_install_post}\
+  %{__mod_compress_install_post}
+
+%define __mod_compress_install_post \
+  if [ "%{zipmodules}" -eq "1" ]; then \
+    find %{buildroot}/usr/lib/modules/ -type f -name '*.ko' | xargs xz; \
+  fi
 
 Name:     i915-sriov-kmod
 Version:  {{{ git_dir_version }}}
@@ -43,7 +53,8 @@ done
 
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
-    make install -C ${kernel_version##*___} M=${PWD}/_kmod_build_${kernel_version%%___*} DESTDIR=%{buildroot} KMODPATH=%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}
+    install -p -m 0755 _kmod_build_${kernel_version%%___*}/*.ko \
+        %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
 done
 %{?akmod_install}
 
