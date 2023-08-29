@@ -3,8 +3,6 @@
 
 %global zipmodules 1
 
-%global kmodinstdir_postfix /kernel/drivers/gpu/drm/i915
-
 %define __spec_install_post \
   %{__arch_install_post}\
   %{__os_install_post}\
