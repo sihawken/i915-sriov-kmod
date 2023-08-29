@@ -64,10 +64,10 @@ done
 %{__install} -d %{buildroot}%{_sysconfdir}/depmod.d/
 %{__install} kmod-i915-sriov.conf %{buildroot}%{_sysconfdir}/depmod.d/
 
+%{?akmod_install}
+
 %files
 /kmod-i915-sriov.conf
-
-%{?akmod_install}
 
 %changelog
 {{{ git_dir_changelog }}}
