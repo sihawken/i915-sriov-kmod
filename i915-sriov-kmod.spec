@@ -16,7 +16,7 @@
 Name:     i915-sriov-kmod
 Version:  {{{ git_dir_version }}}
 Release:  1%{?dist}
-Group:   System Environment/Kernel
+Group:    System Environment/Kernel
 Summary:  Linux i915 module patched with SR-IOV support.
 License:  GPLv2
 URL:      https://github.com/strongtz/i915-sriov-dkms
