@@ -6,3 +6,4 @@
  KBASE       := /lib/modules/$(KVER)
  KSRC        := $(KBASE)/source
  KBUILD      := $(KBASE)/build
+-
