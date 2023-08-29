@@ -1,5 +1,11 @@
 --- _kmod_build_i915-sriov/Makefile 
 +++ _kmod_build_i915-sriov/Makefile
+@@ -1,4 +1,4 @@
+-KVER        ?= $(shell uname -r)
++KVER        ?= $(shell rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')
+ KBASE       := /lib/modules/$(KVER)
+ KSRC        := $(KBASE)/source
+ KBUILD      := $(KBASE)/build
 @@ -409,4 +409,3 @@
  obj-m := i915.o
  
