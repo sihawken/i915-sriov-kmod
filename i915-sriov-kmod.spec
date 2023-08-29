@@ -3,6 +3,8 @@
 
 %global zipmodules 1
 
+%global kmodinstdir_postfix /kernel/drivers/gpu/drm/i915/
+
 %define __spec_install_post \
   %{__arch_install_post}\
   %{__os_install_post}\
@@ -50,7 +52,7 @@ for kernel_version  in %{?kernel_versions} ; do
 done
 
 %install
-
+%define kmodinstdir_postfix /kernel/drivers/gpu/drm/i915/
 for kernel_version in %{?kernel_versions}; do
     mkdir -p %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
     install -p -m 0755 _kmod_build_${kernel_version%%___*}/*.ko \
