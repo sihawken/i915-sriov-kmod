@@ -1,8 +1,0 @@
---- i915-sriov-dkms-master/Makefile
-+++ i915-sriov-dkms-master/Makefile
-@@ -1,4 +1,4 @@
--KVER        ?= $(shell uname -r)
-+KVER        ?= $(shell rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')
- KBASE       := /lib/modules/$(KVER)
- KSRC        := $(KBASE)/source
- KBUILD      := $(KBASE)/build
