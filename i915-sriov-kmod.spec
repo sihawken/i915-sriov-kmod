@@ -22,8 +22,6 @@ URL:      https://github.com/strongtz/i915-sriov-dkms
 
 Source:   %{url}/archive/refs/heads/master.tar.gz
 
-Patch0:   i915-sriov.patch
-
 BuildRequires: kmodtool
 
 %{expand:%(kmodtool --target %{_target_cpu} --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
