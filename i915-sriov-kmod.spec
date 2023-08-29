@@ -16,6 +16,7 @@
 Name:     i915-sriov-kmod
 Version:  {{{ git_dir_version }}}
 Release:  1%{?dist}
+Group:   System Environment/Kernel
 Summary:  Linux i915 module patched with SR-IOV support.
 License:  GPLv2
 URL:      https://github.com/strongtz/i915-sriov-dkms
@@ -38,6 +39,7 @@ Linux i915 module patched with SR-IOV support.
 kmodtool --target %{_target_cpu} --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c i915-sriov-dkms-master
+echo "override i915 * extra" > kmod-i915-sriov.conf
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \+
 
@@ -57,6 +59,8 @@ for kernel_version in %{?kernel_versions}; do
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
     chmod a+x %{buildroot}%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/*
 done
+%{__install} kmod-i915-sriov.conf %{buildroot}%{_sysconfdir}/depmod.d/
+
 %{?akmod_install}
 
 %changelog
