@@ -2,6 +2,8 @@
 
 Not functional. Tested on Fedora Silverblue 38.
 
+Module code from ``https://github.com/strongtz/i915-sriov-dkms``.
+
 I have exhausted all things to try to get this to work.
 
 The module installs to ``/usr/lib/modules/<kernel version>/extra/i915-sriov/i915.ko.xz`` and creates a file: ``/etc/depmod.d/kmod-i915-sriov.conf`` with contents: ``override i915 * extra/i915-sriov/``
