@@ -66,7 +66,7 @@ done
 %{?akmod_install}
 
 %post
-/sbin/depmod -a
+/sbin/depmod -a "$(rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
 %files
 /%{_sysconfdir}/depmod.d/kmod-i915-sriov.conf
