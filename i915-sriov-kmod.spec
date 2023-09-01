@@ -72,5 +72,8 @@ else
 	exit -1
 fi
 
+%files
+/%{_sysconfdir}/depmod.d/kmod-i915-sriov.conf
+
 %changelog
 {{{ git_dir_changelog }}}
