@@ -39,7 +39,6 @@ Linux i915 module patched with SR-IOV support.
 kmodtool --target %{_target_cpu} --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c i915-sriov-dkms-master
-echo "override i915 * extra/i915-sriov/" > kmod-i915-sriov.conf
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \+
 
@@ -49,7 +48,7 @@ done
 
 %build
 for kernel_version  in %{?kernel_versions} ; do
-  make -j$(nproc) -C ${kernel_version##*___} M=${PWD}/_kmod_build_${kernel_version%%___*} KVER=${kernel_version%%___*}
+  make -j$(nproc) -C ${kernel_version##*___} M=${PWD}/_kmod_build_${kernel_version%%___*} KVER=${kernel_version%%___*} INSTALL_MOD_DIR=kernel/drivers/gpu/drm/i915
 done
 
 %install
@@ -59,13 +58,19 @@ for kernel_version in %{?kernel_versions}; do
         %{buildroot}/%{kmodinstdir_prefix}/${kernel_version%%___*}/%{kmodinstdir_postfix}/
 done
 
-%{__install} -d %{buildroot}%{_sysconfdir}/depmod.d/
-%{__install} kmod-i915-sriov.conf %{buildroot}%{_sysconfdir}/depmod.d/
-
 %{?akmod_install}
 
-%files
-/%{_sysconfdir}/depmod.d/kmod-i915-sriov.conf
+%post
+/sbin/depmod -a "$(rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
+
+echo "Updating initramfs with dracut..."
+if /bin/dracut --force ; then
+	echo "Successfully updated initramfs."
+else
+	echo "Failed to update initramfs."
+	echo "You must update your initramfs image for changes to take place."
+	exit -1
+fi
 
 %changelog
 {{{ git_dir_changelog }}}
