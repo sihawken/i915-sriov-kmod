@@ -49,7 +49,9 @@ done
 
 %build
 for kernel_version  in %{?kernel_versions} ; do
-  make -j$(nproc) -C ${kernel_version##*___} M=${PWD}/_kmod_build_${kernel_version%%___*} KVER=${kernel_version%%___*} INSTALL_MOD_DIR=kernel/drivers/gpu/drm/i915
+  make V=1 %{?_smp_mflags} -C ${kernel_version##*___} \
+    M=${PWD}/_kmod_build_${kernel_version%%___*} KVER=${kernel_version%%___*} \
+    module
 done
 
 %install
@@ -65,7 +67,9 @@ done
 %{?akmod_install}
 
 %post
-/sbin/depmod -a "$(rpm -qa kernel --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
+for kernel_version in %{?kernel_versions}; do
+  /sbin/depmod -a "${kernel_version%%___*}
+done
 
 echo "Updating initramfs with dracut..."
 if /bin/dracut --force ; then
@@ -75,6 +79,9 @@ else
 	echo "You must update your initramfs image for changes to take place."
 	exit -1
 fi
+
+%clean
+rm -rf %{buildroot}
 
 %files
 /%{_sysconfdir}/depmod.d/kmod-i915-sriov.conf
