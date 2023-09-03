@@ -39,7 +39,8 @@ Linux i915 module patched with SR-IOV support.
 kmodtool --target %{_target_cpu} --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
 %setup -q -c i915-sriov-dkms-master
-echo "override i915 * extra/i915-sriov/" > kmod-i915-sriov.conf
+echo "search extra" > kmod-i915-sriov.conf
+echo "override i915 * extra/i915-sriov/" >> kmod-i915-sriov.conf
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \+
 
