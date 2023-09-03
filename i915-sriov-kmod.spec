@@ -66,20 +66,6 @@ done
 
 %{?akmod_install}
 
-%post
-for kernel_version in %{?kernel_versions}; do
-  /sbin/depmod -a "${kernel_version%%___*}
-done
-
-echo "Updating initramfs with dracut..."
-if /bin/dracut --force ; then
-	echo "Successfully updated initramfs."
-else
-	echo "Failed to update initramfs."
-	echo "You must update your initramfs image for changes to take place."
-	exit -1
-fi
-
 %clean
 rm -rf %{buildroot}
 
