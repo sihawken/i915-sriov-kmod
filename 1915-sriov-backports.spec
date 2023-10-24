@@ -12,7 +12,7 @@ URL:      https://github.com/sihawken/i915-sriov-kmod
 Source:   %{url}/archive/refs/heads/intel-gpu-i915-backports.tar.gz
 
 Provides: %{name}-kmod-common = %{version}
-Requires: %{name}-kmod-backports >= %{version}
+Requires: %{name}-kmod >= %{version}
 
 BuildRequires: systemd-rpm-macros
 
