@@ -2,7 +2,7 @@
 %global debug_package %{nil}
 %endif
 
-Name:     i915-sriov
+Name:     i915-sriov-backports
 Version:  {{{ git_dir_version }}}
 Release:  1%{?dist}
 Summary:  Linux i915 module patched with SR-IOV support.
