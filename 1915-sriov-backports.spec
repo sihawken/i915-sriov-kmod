@@ -20,7 +20,7 @@ BuildRequires: systemd-rpm-macros
 Linux i915 module patched with SR-IOV support.
 
 %prep
-%setup -q -n %{name}-kmod-intel-gpu-i915-backports
+%setup -q
 
 %files
 %doc %{name}-kmod-intel-gpu-i915-backports/README.md
