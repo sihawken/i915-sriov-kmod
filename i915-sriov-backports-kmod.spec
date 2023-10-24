@@ -38,7 +38,7 @@ Linux i915 module patched with SR-IOV support.
 # print kmodtool output for debugging purposes:
 kmodtool --target %{_target_cpu} --kmodname %{name} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null
 
-%setup -q -c intel-gpu-i915-backports-backport-main
+%setup -q -n intel-gpu-i915-backports-backport-main
 echo "search extra" > kmod-i915-sriov.conf
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \+
