@@ -9,7 +9,7 @@ Summary:  Linux i915 module patched with SR-IOV support.
 License:  GPLv2
 URL:      https://github.com/sihawken/i915-sriov-kmod
 
-Source:   %{url}/archive/refs/heads/intel-gpu-i915-backports.tar.gz
+Source:   %{url}/archive/refs/heads/intel-gpu-i915-backports/i915-sriov-kmod-intel-gpu-i915-backports.tar.gz
 
 Provides: %{name}-kmod-common = %{version}
 Requires: %{name}-kmod >= %{version}
@@ -20,7 +20,7 @@ BuildRequires: systemd-rpm-macros
 Linux i915 module patched with SR-IOV support.
 
 %prep
-%setup -q -c %{name}-kmod-main
+%setup -q -c %{name}-kmod-main/i915-sriov-kmod-intel-gpu-i915-backports
 
 %files
 %doc %{name}-kmod-main/i915-sriov-kmod-intel-gpu-i915-backports/README.md
