@@ -19,9 +19,9 @@ Version:  {{{ git_dir_version }}}
 Release:  1%{?dist}
 Summary:  Linux i915 module patched with SR-IOV support.
 License:  GPLv2
-URL:      https://github.com/strongtz/i915-sriov-dkms
+URL:      https://github.comintel-gpu/intel-gpu-i915-backports
 
-Source:   %{url}/archive/refs/heads/master.tar.gz
+Source:   %{url}/archive/refs/heads/backport/main.tar.gz
 
 BuildRequires: kmodtool
 ExclusiveArch: x86_64
@@ -40,7 +40,6 @@ kmodtool --target %{_target_cpu} --kmodname %{name} %{?buildforkernels:--%{build
 
 %setup -q -c i915-sriov-dkms-master
 echo "search extra" > kmod-i915-sriov.conf
-echo "override i915 * extra/i915-sriov/" >> kmod-i915-sriov.conf
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \+
 
