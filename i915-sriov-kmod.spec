@@ -19,7 +19,7 @@ Version:  {{{ git_dir_version }}}
 Release:  1%{?dist}
 Summary:  Linux i915 module patched with SR-IOV support.
 License:  GPLv2
-URL:      https://github.comintel-gpu/intel-gpu-i915-backports
+URL:      https://github.com/intel-gpu/intel-gpu-i915-backports
 
 Source:   %{url}/archive/refs/heads/backport/main.tar.gz
 
