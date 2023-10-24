@@ -22,8 +22,5 @@ Linux i915 module patched with SR-IOV support.
 %prep
 %setup -q -c %{name}-kmod-main
 
-%files
-%doc %{name}-kmod-main/README.md
-
 %changelog
 {{{ git_dir_changelog }}}
