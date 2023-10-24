@@ -44,7 +44,7 @@ echo "search extra" > kmod-i915-sriov.conf
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \+
 
 for kernel_version  in %{?kernel_versions} ; do
-  cp -a i915-sriov-dkms-master _kmod_build_${kernel_version%%___*}
+  cp -a intel-gpu-i915-backports-backport-main _kmod_build_${kernel_version%%___*}
 done
 
 %build
