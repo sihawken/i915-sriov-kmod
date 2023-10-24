@@ -43,14 +43,13 @@ echo "search extra" > kmod-i915-sriov.conf
 
 find . -type f -name '*.c' -exec sed -i "s/#VERSION#/%{version}/" {} \+
 
-cp intel-gpu-i915-backports-backport-main/defconfigs/i915 intel-gpu-i915-backports-backport-main/.config;
-
 for kernel_version  in %{?kernel_versions} ; do
   cp -a intel-gpu-i915-backports-backport-main _kmod_build_${kernel_version%%___*}
 done
 
 %build
 for kernel_version in %{?kernel_versions} ; do
+  cp -a ${PWD}/_kmod_build_${kernel_version%%___*}/defconfigs/i915 ${PWD}/_kmod_build_${kernel_version%%___*}/.config
   make V=1 %{?_smp_mflags} -C ${kernel_version##*___} KLIB=/lib/modules/${kernel_version##*___} \
     M=${PWD}/_kmod_build_${kernel_version%%___*} KVER=${kernel_version%%___*} olddefconfig
 done
