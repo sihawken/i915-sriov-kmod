@@ -23,7 +23,8 @@ Linux i915 module patched with SR-IOV support.
 %setup -q -c %{name}-kmod-main
 
 %files
-%doc %{name}-kmod-main/README.md
+%doc %{name}-kmod-main/i915-sriov-kmod-intel-gpu-i915-backports/README.md
+%license %{name}-kmod-main/i915-sriov-kmod-intel-gpu-i915-backports/LICENSE
 
 %changelog
 {{{ git_dir_changelog }}}
