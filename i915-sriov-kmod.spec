@@ -14,7 +14,7 @@
     find %{buildroot}/usr/lib/modules/ -type f -name '*.ko' | xargs xz; \
   fi
 
-Name:     i915-sriov-kmod
+Name:     i915-sriov-kmod-backports
 Version:  {{{ git_dir_version }}}
 Release:  1%{?dist}
 Summary:  Linux i915 module patched with SR-IOV support.
