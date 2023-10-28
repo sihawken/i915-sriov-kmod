@@ -9,7 +9,7 @@ Summary:  Linux i915 module patched with SR-IOV support.
 License:  GPLv2
 URL:      https://github.com/strongtz/i915-sriov-dkms
 
-Source:   %{url}/archive/refs/heads/main.tar.gz
+Source:   %{url}/archive/refs/heads/master.tar.gz
 
 Provides: %{name}-kmod-common = %{version}
 Requires: %{name}-kmod >= %{version}
